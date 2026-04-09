@@ -1,0 +1,57 @@
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #409EFF;
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+  --info-color: #909399;
+  --text-primary: #303133;
+  --text-regular: #606266;
+  --text-secondary: #909399;
+  --border-color: #e4e7ed;
+  --bg-color: #f5f7fa;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-regular);
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* Element Plus 卡片样式优化 */
+.el-card {
+  border-radius: 8px !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.el-card__header {
+  padding: 16px 20px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* 表格样式优化 */
+.el-table {
+  border-radius: 4px;
+}
+
+/* 按钮图标对齐 */
+.el-button .el-icon {
+  font-size: 14px;
+}
+
+/* 输入框前缀图标 */
+.el-input__prefix-inner .el-icon {
+  font-size: 16px;
+}
