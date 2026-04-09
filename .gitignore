@@ -1,0 +1,131 @@
+# ============================================
+# 通用忽略规则
+# ============================================
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE 和编辑器
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+*.iml
+
+# 日志文件
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.temp
+*.cache
+
+# ============================================
+# 后端 - Java/Spring Boot
+# ============================================
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Spring Boot
+spring-boot-*.pid
+spring-boot-*.port
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# ============================================
+# 前端 - Vue/Node.js
+# ============================================
+
+# 依赖目录
+node_modules/
+.pnp
+.pnp.js
+
+# 构建输出
+dist/
+dist-ssr/
+build/
+out/
+
+# 本地环境文件
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+# Vite
+*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# ============================================
+# 项目特定
+# ============================================
+
+# Qoder 相关
+.qoder/
+
+# 上传文件（如果有）
+uploads/
+files/
+attachments/
+
+# 备份文件
+*.bak
+*.backup
+*.old
+
+# 其他
+*.pid
+*.seed
+*.pid.lock
