@@ -152,3 +152,34 @@ INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES (
 INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu017', datetime('now'));
 INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu018', datetime('now'));
 INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu019', datetime('now'));
+
+-- ==================== 诉讼管理菜单 ====================
+-- 一级目录: 诉讼管理
+INSERT OR IGNORE INTO sys_menu (resource_id, parent_resource_id, resource_name, resource_type, resource_path, permission, icon, sort_order, status, create_time, update_time)
+VALUES ('menu020', NULL, '诉讼管理', '目录', '/lawsuit', NULL, 'Briefcase', 4, 1, datetime('now'), NULL);
+
+-- 二级菜单: 重大索赔事项
+INSERT OR IGNORE INTO sys_menu (resource_id, parent_resource_id, resource_name, resource_type, resource_path, permission, icon, sort_order, status, create_time, update_time)
+VALUES ('menu021', 'menu020', '重大索赔事项', '菜单', '/lawsuit/claims', NULL, 'Document', 1, 1, datetime('now'), NULL);
+
+-- 重大索赔事项下的按钮
+INSERT OR IGNORE INTO sys_menu (resource_id, parent_resource_id, resource_name, resource_type, resource_path, permission, icon, sort_order, status, create_time, update_time)
+VALUES ('menu022', 'menu021', '新增索赔', '按钮', NULL, 'lawsuit:claim:add', NULL, 1, 1, datetime('now'), NULL);
+
+INSERT OR IGNORE INTO sys_menu (resource_id, parent_resource_id, resource_name, resource_type, resource_path, permission, icon, sort_order, status, create_time, update_time)
+VALUES ('menu023', 'menu021', '编辑索赔', '按钮', NULL, 'lawsuit:claim:edit', NULL, 2, 1, datetime('now'), NULL);
+
+INSERT OR IGNORE INTO sys_menu (resource_id, parent_resource_id, resource_name, resource_type, resource_path, permission, icon, sort_order, status, create_time, update_time)
+VALUES ('menu024', 'menu021', '审批索赔', '按钮', NULL, 'lawsuit:claim:approve', NULL, 3, 1, datetime('now'), NULL);
+
+-- 给总经办角色分配诉讼管理菜单权限
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu020', datetime('now'));
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu021', datetime('now'));
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu022', datetime('now'));
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu023', datetime('now'));
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role001', 'menu024', datetime('now'));
+
+-- 给总审核角色分配诉讼管理菜单权限
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role002', 'menu020', datetime('now'));
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role002', 'menu021', datetime('now'));
+INSERT OR IGNORE INTO sys_role_menu (role_id, resource_id, create_time) VALUES ('role002', 'menu024', datetime('now'));

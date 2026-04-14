@@ -48,6 +48,17 @@
             <span>角色权限</span>
           </el-menu-item>
         </el-sub-menu>
+
+        <el-sub-menu index="/lawsuit">
+          <template #title>
+            <el-icon><Suitcase /></el-icon>
+            <span>诉讼管理</span>
+          </template>
+          <el-menu-item index="/lawsuit/claims">
+            <el-icon><Document /></el-icon>
+            <span>重大索赔事项</span>
+          </el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </el-aside>
     

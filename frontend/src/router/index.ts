@@ -38,6 +38,26 @@ const routes = [
         path: '/permission/role',
         name: 'Permission',
         component: () => import('@/views/permission/PermissionView.vue')
+      },
+      {
+        path: '/lawsuit/claims',
+        name: 'LawsuitClaimList',
+        component: () => import('@/views/lawsuit/LawsuitClaimList.vue')
+      },
+      {
+        path: '/lawsuit/claims/add',
+        name: 'LawsuitClaimAdd',
+        component: () => import('@/views/lawsuit/LawsuitClaimForm.vue')
+      },
+      {
+        path: '/lawsuit/claims/edit/:id',
+        name: 'LawsuitClaimEdit',
+        component: () => import('@/views/lawsuit/LawsuitClaimForm.vue')
+      },
+      {
+        path: '/lawsuit/claims/detail/:id',
+        name: 'LawsuitClaimDetail',
+        component: () => import('@/views/lawsuit/LawsuitClaimForm.vue')
       }
     ]
   }

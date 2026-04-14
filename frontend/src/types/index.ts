@@ -76,3 +76,42 @@ export interface LoginResponse {
   roles: Role[]
   menus: Menu[]
 }
+
+// 诉讼索赔事项
+export interface LawsuitClaim {
+  id: string
+  taskName: string
+  taskCode: string
+  taskType: string
+  courtDocumentNo: string
+  isMajorCase: string
+  isClaimPaymentDispute: string
+  isRefundDispute: string
+  occurrencePeriod: string
+  claimedOrgProvince: string
+  claimedOrgCity: string
+  claimedOrgDistrict: string
+  claimedOrgOther: string
+  claimOrg: string
+  factsAndReasons: string
+  prosecutionProbability: string
+  loseProbability: string
+  attachments: string
+  approvalStatus: string
+  approvalStatusLabel: string
+  createdBy: string
+  createdByName: string
+  createdAt: string
+  updatedAt: string
+}
+
+// 审批日志
+export interface ApprovalLog {
+  id: string
+  lawsuitClaimId: string
+  operatorId: string
+  operatorName: string
+  actionType: string
+  comment: string
+  createdAt: string
+}
