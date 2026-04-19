@@ -13,6 +13,8 @@
       <el-form-item>
         <el-select v-model="searchStatus" placeholder="审批状态" clearable style="width: 160px">
           <el-option label="草稿" value="DRAFT" />
+          <el-option label="待省经办审批" value="PENDING_PROVINCE_OFFICE_REVIEW" />
+          <el-option label="待省审核" value="PENDING_PROVINCE_FINAL_REVIEW" />
           <el-option label="待总经办审批" value="PENDING_OFFICE_REVIEW" />
           <el-option label="待总审核" value="PENDING_FINAL_REVIEW" />
           <el-option label="已通过" value="APPROVED" />
@@ -65,12 +67,12 @@
             @click="handleSubmitApproval(row)"
           >提交审批</el-button>
           <el-button
-            v-if="row.approvalStatus === 'PENDING_OFFICE_REVIEW' || row.approvalStatus === 'PENDING_FINAL_REVIEW'"
+            v-if="row.approvalStatus === 'PENDING_OFFICE_REVIEW' || row.approvalStatus === 'PENDING_FINAL_REVIEW' || row.approvalStatus === 'PENDING_PROVINCE_OFFICE_REVIEW' || row.approvalStatus === 'PENDING_PROVINCE_FINAL_REVIEW'"
             link type="success"
             @click="handleApprove(row)"
           >通过</el-button>
           <el-button
-            v-if="row.approvalStatus === 'PENDING_OFFICE_REVIEW' || row.approvalStatus === 'PENDING_FINAL_REVIEW'"
+            v-if="row.approvalStatus === 'PENDING_OFFICE_REVIEW' || row.approvalStatus === 'PENDING_FINAL_REVIEW' || row.approvalStatus === 'PENDING_PROVINCE_OFFICE_REVIEW' || row.approvalStatus === 'PENDING_PROVINCE_FINAL_REVIEW'"
             link type="danger"
             @click="handleReject(row)"
           >驳回</el-button>
@@ -207,6 +209,8 @@ const handlePageChange = (val: number) => {
 const getStatusType = (status: string) => {
   const map: Record<string, string> = {
     DRAFT: 'info',
+    PENDING_PROVINCE_OFFICE_REVIEW: 'warning',
+    PENDING_PROVINCE_FINAL_REVIEW: 'warning',
     PENDING_OFFICE_REVIEW: 'warning',
     PENDING_FINAL_REVIEW: 'warning',
     APPROVED: 'success',

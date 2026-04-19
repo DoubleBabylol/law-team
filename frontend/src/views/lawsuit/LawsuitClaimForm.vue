@@ -19,6 +19,17 @@
 
       <el-row :gutter="20">
         <el-col :span="12">
+          <el-form-item label="审批路径" prop="approvalPath">
+            <el-select v-model="formData.approvalPath" placeholder="请选择审批路径" style="width: 100%">
+              <el-option label="重大索赔审批（总经办→总审核）" value="MAJOR_CLAIM" />
+              <el-option label="省级录入审批（省经办→省审核）" value="PROVINCE_ENTRY" />
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-row :gutter="20">
+        <el-col :span="12">
           <el-form-item label="任务名称" prop="taskName">
             <el-input v-model="formData.taskName" placeholder="请输入任务名称" />
           </el-form-item>
@@ -272,6 +283,7 @@ const formData = reactive({
   prosecutionProbability: '',
   loseProbability: '',
   attachments: '',
+  approvalPath: 'MAJOR_CLAIM',
 })
 
 // 表单验证规则
@@ -457,6 +469,7 @@ onMounted(async () => {
       formData.prosecutionProbability = data.prosecutionProbability
       formData.loseProbability = data.loseProbability
       formData.attachments = data.attachments || ''
+      formData.approvalPath = data.approvalPath || 'MAJOR_CLAIM'
 
       // 联动加载市和区县选项
       handleProvinceChange(data.claimedOrgProvince)

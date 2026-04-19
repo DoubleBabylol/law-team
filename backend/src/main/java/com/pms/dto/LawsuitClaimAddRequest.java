@@ -52,6 +52,8 @@ public class LawsuitClaimAddRequest {
 
     private String attachments;
 
+    private String approvalPath; // MAJOR_CLAIM or PROVINCE_ENTRY
+
     // Getters and Setters
     public String getTaskName() { return taskName; }
     public void setTaskName(String taskName) { this.taskName = taskName; }
@@ -100,4 +102,7 @@ public class LawsuitClaimAddRequest {
 
     public String getAttachments() { return attachments; }
     public void setAttachments(String attachments) { this.attachments = attachments; }
+
+    public String getApprovalPath() { return approvalPath; }
+    public void setApprovalPath(String approvalPath) { this.approvalPath = approvalPath; }
 }

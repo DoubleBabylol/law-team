@@ -35,7 +35,7 @@ const routes = [
         component: () => import('@/views/system/MenuView.vue')
       },
       {
-        path: '/permission/role',
+        path: '/system/permission',
         name: 'Permission',
         component: () => import('@/views/permission/PermissionView.vue')
       },

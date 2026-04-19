@@ -36,14 +36,7 @@
             <el-icon><Menu /></el-icon>
             <span>菜单管理</span>
           </el-menu-item>
-        </el-sub-menu>
-        
-        <el-sub-menu index="/permission">
-          <template #title>
-            <el-icon><Lock /></el-icon>
-            <span>权限配置</span>
-          </template>
-          <el-menu-item index="/permission/role">
+          <el-menu-item index="/system/permission">
             <el-icon><Key /></el-icon>
             <span>角色权限</span>
           </el-menu-item>

@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface LawsuitClaimRepository extends JpaRepository<LawsuitClaim, String> {
 
-    @Query("SELECT lc.taskCode FROM LawsuitClaim lc WHERE lc.taskCode LIKE :prefix ORDER BY lc.taskCode DESC")
+    @Query("SELECT MAX(lc.taskCode) FROM LawsuitClaim lc WHERE lc.taskCode LIKE :prefix")
     Optional<String> findMaxTaskCodeByPrefix(@Param("prefix") String prefix);
 
     Page<LawsuitClaim> findByApprovalStatus(ApprovalStatus approvalStatus, Pageable pageable);

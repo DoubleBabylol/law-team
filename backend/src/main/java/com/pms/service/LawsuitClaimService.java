@@ -1,6 +1,7 @@
 package com.pms.service;
 
 import com.pms.dto.*;
+import com.pms.entity.ApprovalPath;
 import com.pms.entity.ApprovalStatus;
 import com.pms.entity.LawsuitClaim;
 import com.pms.entity.LawsuitClaimApprovalLog;
@@ -75,6 +76,15 @@ public class LawsuitClaimService {
         claim.setLoseProbability(request.getLoseProbability());
         claim.setAttachments(request.getAttachments());
         claim.setApprovalStatus(ApprovalStatus.DRAFT);
+        // 设置审批路径
+        if (request.getApprovalPath() != null && !request.getApprovalPath().isEmpty()) {
+            try {
+                claim.setApprovalPath(ApprovalPath.valueOf(request.getApprovalPath()));
+            } catch (IllegalArgumentException e) {
+                // 无效的路径值，默认为 MAJOR_CLAIM
+                claim.setApprovalPath(ApprovalPath.MAJOR_CLAIM);
+            }
+        }
         claim.setCreatedBy(userId);
         claim.setCreatedByName(username);
 
@@ -165,11 +175,20 @@ public class LawsuitClaimService {
                 if (currentStatus != ApprovalStatus.DRAFT && currentStatus != ApprovalStatus.REJECTED) {
                     throw new BusinessException("当前状态不允许提交审批");
                 }
-                claim.setApprovalStatus(ApprovalStatus.PENDING_OFFICE_REVIEW);
+                // 根据审批路径决定进入哪个审批环节
+                if (claim.getApprovalPath() == ApprovalPath.PROVINCE_ENTRY) {
+                    claim.setApprovalStatus(ApprovalStatus.PENDING_PROVINCE_OFFICE_REVIEW);
+                } else {
+                    claim.setApprovalStatus(ApprovalStatus.PENDING_OFFICE_REVIEW);
+                }
                 break;
 
             case "APPROVE":
-                if (currentStatus == ApprovalStatus.PENDING_OFFICE_REVIEW) {
+                if (currentStatus == ApprovalStatus.PENDING_PROVINCE_OFFICE_REVIEW) {
+                    claim.setApprovalStatus(ApprovalStatus.PENDING_PROVINCE_FINAL_REVIEW);
+                } else if (currentStatus == ApprovalStatus.PENDING_PROVINCE_FINAL_REVIEW) {
+                    claim.setApprovalStatus(ApprovalStatus.APPROVED);
+                } else if (currentStatus == ApprovalStatus.PENDING_OFFICE_REVIEW) {
                     claim.setApprovalStatus(ApprovalStatus.PENDING_FINAL_REVIEW);
                 } else if (currentStatus == ApprovalStatus.PENDING_FINAL_REVIEW) {
                     claim.setApprovalStatus(ApprovalStatus.APPROVED);
@@ -180,7 +199,9 @@ public class LawsuitClaimService {
 
             case "REJECT":
                 if (currentStatus != ApprovalStatus.PENDING_OFFICE_REVIEW
-                        && currentStatus != ApprovalStatus.PENDING_FINAL_REVIEW) {
+                        && currentStatus != ApprovalStatus.PENDING_FINAL_REVIEW
+                        && currentStatus != ApprovalStatus.PENDING_PROVINCE_OFFICE_REVIEW
+                        && currentStatus != ApprovalStatus.PENDING_PROVINCE_FINAL_REVIEW) {
                     throw new BusinessException("当前状态不允许驳回");
                 }
                 claim.setApprovalStatus(ApprovalStatus.REJECTED);
@@ -233,6 +254,8 @@ public class LawsuitClaimService {
         vo.setAttachments(claim.getAttachments());
         vo.setApprovalStatus(claim.getApprovalStatus());
         vo.setApprovalStatusLabel(claim.getApprovalStatus().getLabel());
+        vo.setApprovalPath(claim.getApprovalPath() != null ? claim.getApprovalPath().name() : null);
+        vo.setApprovalPathLabel(claim.getApprovalPath() != null ? claim.getApprovalPath().getLabel() : null);
         vo.setCreatedBy(claim.getCreatedBy());
         vo.setCreatedByName(claim.getCreatedByName());
         vo.setCreatedAt(claim.getCreatedAt());

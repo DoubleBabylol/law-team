@@ -99,6 +99,8 @@ export interface LawsuitClaim {
   attachments: string
   approvalStatus: string
   approvalStatusLabel: string
+  approvalPath: string | null
+  approvalPathLabel: string | null
   createdBy: string
   createdByName: string
   createdAt: string

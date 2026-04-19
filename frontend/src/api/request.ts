@@ -31,11 +31,12 @@ request.interceptors.response.use(
     return res
   },
   error => {
-    if (error.response?.status === 401) {
+    const status = error.response?.status
+    if (status === 401 || status === 403) {
       localStorage.removeItem('token')
       router.push('/login')
     }
-    ElMessage.error(error.message || '网络连接失败')
+    ElMessage.error(error.response?.data?.message || error.message || '网络连接失败')
     return Promise.reject(error)
   }
 )

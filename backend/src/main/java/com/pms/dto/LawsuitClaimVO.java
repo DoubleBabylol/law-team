@@ -1,6 +1,7 @@
 package com.pms.dto;
 
 import com.pms.entity.ApprovalStatus;
+import com.pms.entity.ApprovalPath;
 import java.time.LocalDateTime;
 
 public class LawsuitClaimVO {
@@ -25,6 +26,8 @@ public class LawsuitClaimVO {
     private String attachments;
     private ApprovalStatus approvalStatus;
     private String approvalStatusLabel;
+    private String approvalPath;
+    private String approvalPathLabel;
     private String createdBy;
     private String createdByName;
     private LocalDateTime createdAt;
@@ -90,6 +93,12 @@ public class LawsuitClaimVO {
 
     public String getApprovalStatusLabel() { return approvalStatusLabel; }
     public void setApprovalStatusLabel(String approvalStatusLabel) { this.approvalStatusLabel = approvalStatusLabel; }
+
+    public String getApprovalPath() { return approvalPath; }
+    public void setApprovalPath(String approvalPath) { this.approvalPath = approvalPath; }
+
+    public String getApprovalPathLabel() { return approvalPathLabel; }
+    public void setApprovalPathLabel(String approvalPathLabel) { this.approvalPathLabel = approvalPathLabel; }
 
     public String getCreatedBy() { return createdBy; }
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }

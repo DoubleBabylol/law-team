@@ -67,6 +67,10 @@ public class LawsuitClaim {
     @Column(name = "approval_status", length = 30, nullable = false)
     private ApprovalStatus approvalStatus = ApprovalStatus.DRAFT;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "approval_path", length = 30)
+    private ApprovalPath approvalPath;
+
     @Column(name = "created_by", length = 32)
     private String createdBy;
 
@@ -154,6 +158,9 @@ public class LawsuitClaim {
 
     public ApprovalStatus getApprovalStatus() { return approvalStatus; }
     public void setApprovalStatus(ApprovalStatus approvalStatus) { this.approvalStatus = approvalStatus; }
+
+    public ApprovalPath getApprovalPath() { return approvalPath; }
+    public void setApprovalPath(ApprovalPath approvalPath) { this.approvalPath = approvalPath; }
 
     public String getCreatedBy() { return createdBy; }
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
